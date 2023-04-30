@@ -14,7 +14,7 @@ const shoternUrl = async(req, res, next) => {
     console.error(err)
  }
  if (!url) {
-    return res.status(500).json({message:' Unable to Add' });
+    return res.status(500).json({message:'Unable to Add' });
 }
 } 
 
@@ -22,7 +22,7 @@ const shortUrlById = async(req, res, next) => {
     const { shortUrl } = req.params;
     let url;
     try {
-        url = await urlSchema.findOne({ shortUrl });
+        url = await urlSchema.findOne({ shortUrl: shortUrl });
     } catch (err) {
         console.error(err);
     }
@@ -32,7 +32,7 @@ const shortUrlById = async(req, res, next) => {
         });
     }
     res.redirect(url.originalUrl);
-    return res.status(201).json({url})
 }
+
 exports.shoternUrl = shoternUrl;
-exports.shortUrlById = shortUrlById;
+exports.shortUrlById = shortUrlById;    
